@@ -1,0 +1,10 @@
+message-printer:
+ protocol: http://
+ path: messages
+ user: user
+ pass: password
+ ribbon:
+  eureka:
+   enabled: false
+  listOfServers: localhost:8080
+  ServerListRefreshInterval: 1500
