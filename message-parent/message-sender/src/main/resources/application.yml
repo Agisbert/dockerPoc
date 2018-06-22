@@ -32,3 +32,4 @@ eureka:
   serviceUrl:
    defaultZone: http://localhost:1099/eureka
   register-with-eureka: false
+  registryFetchIntervalSeconds: 2
