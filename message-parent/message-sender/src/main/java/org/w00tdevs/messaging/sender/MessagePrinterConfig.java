@@ -19,11 +19,6 @@ public class MessagePrinterConfig {
 	  IClientConfig ribbonClientConfig;
 
 	  @Bean
-	  public IPing ribbonPing(IClientConfig config) {
-	    return new PingUrl(false, "/health");
-	  }
-
-	  @Bean
 	  public IRule ribbonRule(IClientConfig config) {
 	    return new AvailabilityFilteringRule();
 	  }

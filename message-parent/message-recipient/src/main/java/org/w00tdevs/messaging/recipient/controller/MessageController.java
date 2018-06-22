@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.w00tdevs.messaging.domain.Message;
+import org.w00tdevs.messaging.domain.SimpleResponseWrapper;
 import org.w00tdevs.messaging.recipient.service.MessageService;
 
 /**
@@ -37,18 +39,10 @@ public class MessageController {
 	 *
 	 * @return the message
 	 */
+	@ResponseBody
 	@RequestMapping(path = "/messages", method = RequestMethod.GET)
-	public Boolean getMessage() {
-		return true;
+	public SimpleResponseWrapper<Boolean> getMessage() {
+		return new SimpleResponseWrapper<Boolean>(true);
 	}
 	
-	/**
-	 * Gets the root.
-	 *
-	 * @return the root
-	 */
-	@RequestMapping(path = "/health", method = RequestMethod.GET)
-	public Boolean getRoot() {
-		return true;
-	}
 }

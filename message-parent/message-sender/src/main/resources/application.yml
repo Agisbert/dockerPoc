@@ -5,6 +5,30 @@ message-printer:
  pass: password
  ribbon:
   eureka:
-   enabled: false
-  listOfServers: localhost:8080
-  ServerListRefreshInterval: 1500
+   enabled: true
+  ServerListRefreshInterval: 5000
+ribbon:
+ ConnectTimeout: 1000
+ ReadTimeout: 1000
+ 
+spring:
+  application:
+    name: message-sender_${random.valu‌​e}
+    
+hystrix:
+ command:
+  default:
+   execution:
+    isolation:
+     thread:
+      timeoutInMilliseconds: 2000
+  circuitBreaker:
+   requestVolumeThreshold: 4
+   sleepWindowInMilliseconds: 50000
+   errorThresholdPercentage: 50
+
+eureka:
+ client:
+  serviceUrl:
+   defaultZone: http://localhost:1099/eureka
+  register-with-eureka: false

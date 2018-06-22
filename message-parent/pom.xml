@@ -22,7 +22,8 @@
 	<modules>
 		<module>message-sender</module>
 		<module>message-recipient</module>
-		<module>message-domain</module>
+        <module>message-domain</module>
+        <module>message-service-registry</module>
 	</modules>
 
 	<dependencyManagement>

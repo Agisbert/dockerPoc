@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.w00tdevs.messaging.domain.Message;
@@ -20,6 +21,12 @@ public class CroneComponent {
 	@Autowired
 	private MessageService messageService;
 
+	@Value("${spring.application.name}")
+	private String appName;
+	
+	private int messageNumber;
+	
+	
 	/**
 	 * Key board input.
 	 */
@@ -40,8 +47,8 @@ public class CroneComponent {
 	
 	private void sendMessage(int value) {
 		Message msg = new Message();
-		msg.setMessage("Dummy message " + value);
-		msg.setSender("Dummy sender" + value);
+		msg.setMessage("Dummy message " + ++messageNumber);
+		msg.setSender("Dummy sender " + appName);
 		msg.setAttempt(0);	
 		this.messageService.sendMessage(msg);
 	}

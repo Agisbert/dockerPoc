@@ -3,12 +3,12 @@ package org.w00tdevs.messaging.sender;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.support.BasicAuthorizationInterceptor;
-import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,8 +18,8 @@ import org.springframework.web.client.RestTemplate;
  */
 @Configuration
 @EnableScheduling
-@EnableRetry
 @EnableCircuitBreaker
+@EnableDiscoveryClient
 @RibbonClient(name = "message-printer", configuration = MessagePrinterConfig.class)
 public class MessageSenderConfig {
 

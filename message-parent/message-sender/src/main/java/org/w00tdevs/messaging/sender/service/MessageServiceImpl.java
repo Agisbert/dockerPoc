@@ -1,12 +1,11 @@
 package org.w00tdevs.messaging.sender.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.retry.annotation.Backoff;
-import org.springframework.retry.annotation.Recover;
-import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.w00tdevs.messaging.domain.Message;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 /**
  * @author agisbert
@@ -24,6 +23,7 @@ public class MessageServiceImpl implements MessageService {
 	 * @see org.w00tdevs.messaging.sender.service.MessageService#sendMessage(org.w00tdevs.messaging.domain.Message)
 	 */
 	//	@Retryable(maxAttempts = 3, backoff = @Backoff(delay = 2000))
+	@HystrixCommand(fallbackMethod = "recoverSendMessage")
 	public Boolean sendMessage(Message msg) {
 		try{			
 			client.postForObject("http://message-printer/messages", msg, Boolean.class);
@@ -42,7 +42,7 @@ public class MessageServiceImpl implements MessageService {
 	 *            the msg
 	 * @return the boolean
 	 */
-	@Recover
+	//	@Recover
 	public Boolean recoverSendMessage(Message msg) {
 		System.out.println("Message not delivered " + msg);
 		return false;
