@@ -2,15 +2,7 @@ package org.w00tdevs.messaging.domain;
 
 import lombok.ToString;
 
-/**
- * @author agisbert
- *
- */
-/**
- * @author agisbert
- *
- * @param <T>
- */
+
 /**
  * @author agisbert
  *
