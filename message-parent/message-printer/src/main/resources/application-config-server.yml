@@ -1,0 +1,5 @@
+spring:
+ application:
+  name: message-recipient
+ config:
+  uri: http://localhost:8888
