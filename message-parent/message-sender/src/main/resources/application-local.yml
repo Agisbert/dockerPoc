@@ -1,7 +1,10 @@
 spring:
   application:
     name: message-sender
-
+   
+server:
+ port: 0
+ 
 message-printer:
  protocol: http://
  path: messages
