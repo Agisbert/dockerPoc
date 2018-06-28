@@ -1,5 +1,5 @@
 spring:
  application:
-  name: message-recipient
+  name: message-printer
  config:
   uri: http://localhost:8888

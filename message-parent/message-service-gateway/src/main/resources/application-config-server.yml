@@ -2,4 +2,4 @@ spring:
  application:
   name: zuul-server
  config:
-  uri: http://localhost:8888
+  uri: http://config-container:8888
