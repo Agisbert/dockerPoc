@@ -2,6 +2,9 @@ spring:
   application:
     name: message-printer
     
+message-printer:
+ signature: ${spring.application.name}:${random.value}
+    
 server:
  port: 0
  

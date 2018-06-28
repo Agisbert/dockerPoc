@@ -1,7 +1,10 @@
 spring:
   application:
     name: message-sender
-   
+       
+message-sender:
+ signature: ${spring.application.name}:${random.value}
+ 
 server:
  port: 0
  
