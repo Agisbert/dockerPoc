@@ -8,14 +8,21 @@ import org.w00tdevs.messaging.domain.Message;
  */
 public interface MessageService {
 
-
+	
 	/**
 	 * Prints the message.
 	 *
 	 * @param message
 	 *            the message
-	 * @return the boolean
+	 * @return the message
 	 */
-	void printMessage(Message message);
+	Message printMessage(Message message);
+
+	/**
+	 * Prints the dummy message.
+	 *
+	 * @return the message
+	 */
+	Message printDummyMessage();
 
 }

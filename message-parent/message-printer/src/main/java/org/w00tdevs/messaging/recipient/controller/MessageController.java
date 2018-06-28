@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.w00tdevs.messaging.domain.Message;
-import org.w00tdevs.messaging.domain.SimpleResponseWrapper;
 import org.w00tdevs.messaging.recipient.service.MessageService;
 
 /**
@@ -29,9 +28,8 @@ public class MessageController {
 	 * @return the boolean
 	 */
 	@RequestMapping(path = "/messages", method = RequestMethod.POST)
-	public Boolean postMessage(@RequestBody Message message) {
-		messageService.printMessage(message);
-		return true;
+	public Message postMessage(@RequestBody Message message) {
+		return messageService.printMessage(message);
 	}
 	
 	/**
@@ -41,8 +39,8 @@ public class MessageController {
 	 */
 	@ResponseBody
 	@RequestMapping(path = "/messages", method = RequestMethod.GET)
-	public SimpleResponseWrapper<Boolean> getMessage() {
-		return new SimpleResponseWrapper<Boolean>(true);
+	public Message getMessage() {
+		return messageService.printDummyMessage();
 	}
 	
 }

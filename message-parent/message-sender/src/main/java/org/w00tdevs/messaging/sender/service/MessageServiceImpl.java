@@ -1,6 +1,11 @@
 package org.w00tdevs.messaging.sender.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.w00tdevs.messaging.domain.Message;
@@ -18,23 +23,53 @@ public class MessageServiceImpl implements MessageService {
 	@Autowired
 	private RestTemplate client;
 
+	@Value("${message-sender.signature}")
+	private String signature;
+
 
 	/* (non-Javadoc)
 	 * @see org.w00tdevs.messaging.sender.service.MessageService#sendMessage(org.w00tdevs.messaging.domain.Message)
 	 */
-	//	@Retryable(maxAttempts = 3, backoff = @Backoff(delay = 2000))
 	@HystrixCommand(fallbackMethod = "recoverSendMessage")
-	public Boolean sendMessage(Message msg) {
+	public Message sendMessage(Message msg) {
+		Message response = null;
 		try{			
-			client.postForObject("http://message-printer/messages", msg, Boolean.class);
+			response = client.postForObject("http://message-printer/messages", msg, Message.class);
 		}catch (RuntimeException e) {
 			msg.setAttempt(msg.getAttempt() + 1);
 			System.out.println("Error invoking service ->"  + "\n" + msg.toString() + "\n" + e.getMessage());
 			throw e;
 		}
-		return true;
+		return response;
 	}
-	
+
+
+	/* (non-Javadoc)
+	 * @see org.w00tdevs.messaging.sender.service.MessageService#sendRandomMessages(java.lang.Integer)
+	 */
+	@Override
+	@HystrixCommand(fallbackMethod = "recoverRandomMessages")
+	public List<Message> sendRandomMessages(Integer messages) {
+		return IntStream.range(0, messages).mapToObj(index -> createRandomMessage(index)).map(msg -> this.sendMessage(msg)).collect(Collectors.toList());
+	}
+
+
+	/**
+	 * Creates the random message.
+	 *
+	 * @param index
+	 *            the index
+	 * @return the message
+	 */
+	private Message createRandomMessage(Integer index) {
+		Message msg = new Message();
+		msg.setAttempt(0);
+		msg.setPrinted(false);
+		msg.setSender(signature);
+		msg.setMessage(msg.getSender() + " " + index);
+		return msg;
+	}
+
 	/**
 	 * Recover send message.
 	 *
@@ -43,9 +78,21 @@ public class MessageServiceImpl implements MessageService {
 	 * @return the boolean
 	 */
 	//	@Recover
-	public Boolean recoverSendMessage(Message msg) {
+	public Message recoverSendMessage(Message msg) {
 		System.out.println("Message not delivered " + msg);
-		return false;
+		return msg;
+	}
+
+	/**
+	 * Recover send message.
+	 *
+	 * @param msg
+	 *            the msg
+	 * @return the boolean
+	 */
+	//	@Recover
+	public List<Message> recoverRandomMessages(Integer index) {
+		return null;
 	}
 
 }

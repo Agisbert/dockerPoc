@@ -18,6 +18,13 @@ public class Message {
 	/** The sender. */
 	private String sender;
 
+	/** The printed. */
+	private Boolean printed;
+	
+	/** The printed by. */
+	private String printedBy;
+
+
 	/**
 	 * Gets the message.
 	 *
@@ -75,6 +82,42 @@ public class Message {
 		this.sender = sender;
 	}
 
+	/**
+	 * Gets the printed.
+	 *
+	 * @return the printed
+	 */
+	public Boolean getPrinted() {
+		return printed;
+	}
 
+	/**
+	 * Sets the printed.
+	 *
+	 * @param printed
+	 *            the new printed
+	 */
+	public void setPrinted(Boolean printed) {
+		this.printed = printed;
+	}
+
+	/**
+	 * Gets the printed by.
+	 *
+	 * @return the printed by
+	 */
+	public String getPrintedBy() {
+		return printedBy;
+	}
+
+	/**
+	 * Sets the printed by.
+	 *
+	 * @param printedBy
+	 *            the new printed by
+	 */
+	public void setPrintedBy(String printedBy) {
+		this.printedBy = printedBy;
+	}
 
 }
