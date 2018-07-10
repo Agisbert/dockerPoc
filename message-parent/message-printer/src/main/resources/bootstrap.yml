@@ -1,0 +1,24 @@
+spring:
+ profiles:
+  active: local
+ application:
+  name: message-printer
+ cloud:
+  config:
+   enabled: false
+   
+---
+spring:
+ profiles: config-server
+ application:
+  name: message-printer
+ cloud:
+  config:
+   enabled: true
+   uri: http://config-container:8090
+   fail-fast: true
+   retry:
+    maxAttempts: 10
+    initialInterval: 2000
+    multiplier: 2
+    maxInterval: 48

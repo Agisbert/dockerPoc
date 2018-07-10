@@ -1,5 +1,0 @@
-spring:
- application:
-  name: message-sender
- config:
-  uri: http://config-container:8888

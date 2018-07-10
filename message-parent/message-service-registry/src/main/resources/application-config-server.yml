@@ -1,6 +1,0 @@
-spring:
- cloud:
-  config:
-   uri: http://config-container:8888
- application:
-  name: registry-server

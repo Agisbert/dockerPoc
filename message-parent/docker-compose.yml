@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+ config-container:
+  image: w00tdevs/message-service-config:latest
+   
+ eureka-container:
+  image: w00tdevs/message-service-registry:latest
+  restart: on-failure
+  depends_on:
+   - config-container
+
+ gateway-container:
+  image: w00tdevs/message-service-gateway:latest
+  ports:
+   - 8080:8080
+  depends_on:
+   - config-container
+   - eureka-container
+   
+ message-printer-1:
+  image: w00tdevs/message-printer:latest
+  depends_on:
+   - config-container
+   - gateway-container
+   - eureka-container
+
+ message-sender-1:
+  image: w00tdevs/message-sender:latest
+  depends_on:
+   - config-container
+   - gateway-container
+   - eureka-container

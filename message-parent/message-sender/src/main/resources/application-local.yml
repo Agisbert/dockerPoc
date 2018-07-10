@@ -1,7 +1,3 @@
-spring:
-  application:
-    name: message-sender
-       
 message-sender:
  signature: ${spring.application.name}:${random.value}
  
@@ -25,7 +21,7 @@ eureka:
  client:
   serviceUrl:
    defaultZone: http://localhost:1099/eureka
-  register-with-eureka: false
+  register-with-eureka: true
   registryFetchIntervalSeconds: 2
   
 hystrix:
@@ -34,7 +30,7 @@ hystrix:
    execution:
     isolation:
      thread:
-      timeoutInMilliseconds: 2000
+      timeoutInMilliseconds: 3000
   circuitBreaker:
    requestVolumeThreshold: 4
    sleepWindowInMilliseconds: 50000

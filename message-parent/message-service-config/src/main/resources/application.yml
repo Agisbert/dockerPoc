@@ -1,5 +1,5 @@
 server:
- port: 8888
+ port: 8090
 
 spring:
   cloud:
@@ -10,3 +10,4 @@ spring:
           skipSslValidation: true
           clone-on-startup: true
           searchPaths: message-config
+          

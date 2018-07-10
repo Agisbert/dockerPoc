@@ -1,5 +1,0 @@
-spring:
- application:
-  name: zuul-server
- config:
-  uri: http://config-container:8888
