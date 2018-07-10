@@ -9,4 +9,6 @@ eureka:
   serviceUrl:
    defaultZone: http://localhost:1099/eureka
  instance:
-  instanceId: ${spring.application.name}:${spri‌​ng.application.insta‌​nce_id:${random.valu‌​e}}
+  instanceId: ${spring.application.name}
+  healthCheckUrlPath: /actuator/health
+  statusPageUrl: /actuator/health

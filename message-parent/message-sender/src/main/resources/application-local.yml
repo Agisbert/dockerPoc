@@ -23,6 +23,10 @@ eureka:
    defaultZone: http://localhost:1099/eureka
   register-with-eureka: true
   registryFetchIntervalSeconds: 2
+ instance:
+  instanceId: ${spring.application.name}
+  healthCheckUrlPath: /actuator/health
+  statusPageUrl: /actuator/health
   
 hystrix:
  command:
