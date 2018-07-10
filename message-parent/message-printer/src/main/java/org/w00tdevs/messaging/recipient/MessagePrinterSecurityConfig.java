@@ -26,7 +26,7 @@ public class MessagePrinterSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.httpBasic();
-		http.authorizeRequests().antMatchers("/health").permitAll()
+		http.authorizeRequests().antMatchers("/actuator/health").permitAll()
 		.anyRequest().authenticated();
 	}
 
