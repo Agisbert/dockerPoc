@@ -4,4 +4,4 @@ ARG JAR_FILE
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", "-Dspring.profiles.active=config-server","-jar","/app.jar"]
 HEALTHCHECK \
-  CMD curl -f http://localhost:1099/actuator/health || exit 1
+  CMD wget http://localhost:1099/actuator/health || exit 1
