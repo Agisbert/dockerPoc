@@ -1,18 +1,23 @@
 spring:
- profiles:
-  active: local2
  application:
   name: registry-server
+---
+spring:
+ profiles: local
+ cloud:
+  config:
+   enabled: false
+---
+spring:
+ profiles: local-config
  cloud:
   config:
    enabled: true
    uri: http://localhost:8090
-   
+   fail-fast: true
 ---
 spring:
- profiles: config-server
- application:
-  name: registry-server
+ profiles: docker-config
  cloud:
   config:
    enabled: true
