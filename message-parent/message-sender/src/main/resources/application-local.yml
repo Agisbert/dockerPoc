@@ -21,7 +21,7 @@ eureka:
   register-with-eureka: true
   registryFetchIntervalSeconds: 2
  instance:
-  instanceId: ${spring.application.name}
+  instanceId: ${spring.application.name}:${random.value}
   healthCheckUrlPath: /actuator/health
   statusPageUrl: /actuator/health
   
