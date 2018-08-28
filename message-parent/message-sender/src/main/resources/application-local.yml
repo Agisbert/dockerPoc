@@ -9,10 +9,7 @@ message-printer:
  path: messages
  user: user
  pass: password
- ribbon:
-  eureka:
-   enabled: true
-  ServerListRefreshInterval: 5000
+
 ribbon:
  ConnectTimeout: 1000
  ReadTimeout: 1000

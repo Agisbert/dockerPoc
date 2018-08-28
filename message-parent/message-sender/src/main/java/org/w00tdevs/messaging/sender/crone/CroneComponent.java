@@ -21,9 +21,11 @@ public class CroneComponent {
 	@Autowired
 	private MessageService messageService;
 
+	/** The app name. */
 	@Value("${spring.application.name}")
 	private String appName;
-	
+
+	/** The message number. */
 	private int messageNumber;
 	
 	
@@ -45,9 +47,15 @@ public class CroneComponent {
 		}
 	}
 	
+	/**
+	 * Send message.
+	 *
+	 * @param value
+	 *            the value
+	 */
 	private void sendMessage(int value) {
 		Message msg = new Message();
-		msg.setMessage("Dummy message " + ++messageNumber);
+		msg.setMessage("Dummy message " + (++messageNumber));
 		msg.setSender("Dummy sender " + appName);
 		msg.setAttempt(0);	
 		this.messageService.sendMessage(msg);

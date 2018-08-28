@@ -1,18 +1,30 @@
 spring:
- profiles: default
  application:
   name: gateway-server
+---
+spring:
+ profiles: local
  cloud:
   config:
    enabled: false
-   
 ---
 spring:
- profiles: config-server
- application:
-  name: gateway-server
+ profiles: local-config
+ cloud:
+  config:
+   enabled: true
+   uri: http://localhost:8090
+   fail-fast: true 
+---
+spring:
+ profiles: docker-config
  cloud:
   config:
    enabled: true
    uri: http://config-container:8090
    fail-fast: true
+   retry:
+    maxAttempts: 10
+    initialInterval: 2000
+    multiplier: 2
+    maxInterval: 48

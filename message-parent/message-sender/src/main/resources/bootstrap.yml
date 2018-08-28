@@ -1,20 +1,25 @@
 spring:
- profile: local2
  application:
   name: message-sender
+encrypt:
+  key: message-sender-key
+---
+spring:
+ profiles: local
+ cloud:
+  config:
+   enabled: false
+---
+spring:
+ profiles: local-config
  cloud:
   config:
    enabled: true
    uri: http://localhost:8090
-
-encrypt:
-  key: message-sender-key
-   
+   fail-fast: true
 ---
 spring:
- profile: config-server
- application:
-  name: message-sender
+ profiles: docker-config
  cloud:
   config:
    enabled: true

@@ -14,6 +14,3 @@ eureka:
   register-with-eureka: false
   fetchRegistry: true
   registryFetchIntervalSeconds: 2
-  
-zuul:
- sensitiveHeaders:

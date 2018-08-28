@@ -80,7 +80,6 @@ public class MessageServiceImpl implements MessageService {
 	 *            the msg
 	 * @return the boolean
 	 */
-	//	@Recover
 	public Message recoverSendMessage(Message msg) {
 		System.out.println("Message not delivered " + msg);
 		return msg;
@@ -93,8 +92,7 @@ public class MessageServiceImpl implements MessageService {
 	 *            the msg
 	 * @return the boolean
 	 */
-	//	@Recover
-	public List<Message> recoverRandomMessages(Integer index) {
+	public List<Message> recoverRandomMessages(Integer messages) {
 		return null;
 	}
 

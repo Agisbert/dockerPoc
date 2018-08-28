@@ -1,21 +1,25 @@
 spring:
- profiles:
-  active: local2
  application:
   name: message-printer
+encrypt:
+  key: message-printer-key 
+---
+spring:
+ profiles: local
+ cloud:
+  config:
+   enabled: false
+---
+spring:
+ profiles: local-config
  cloud:
   config:
    enabled: true
    uri: http://localhost:8090
-   
-encrypt:
-  key: message-printer-key
-   
+   fail-fast: true
 ---
 spring:
- profiles: config-server
- application:
-  name: message-printer
+ profiles: docker-config
  cloud:
   config:
    enabled: true
