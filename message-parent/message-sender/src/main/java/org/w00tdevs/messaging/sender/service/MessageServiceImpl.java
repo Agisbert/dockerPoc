@@ -25,6 +25,9 @@ public class MessageServiceImpl implements MessageService {
 
 	@Value("${message-sender.signature}")
 	private String signature;
+	
+	@Value("${message-printer.path}")
+	private String path;
 
 
 	/* (non-Javadoc)
@@ -34,7 +37,7 @@ public class MessageServiceImpl implements MessageService {
 	public Message sendMessage(Message msg) {
 		Message response = null;
 		try{			
-			response = client.postForObject("http://message-printer/messages", msg, Message.class);
+			response = client.postForObject("http://message-printer/" + path, msg, Message.class);
 		}catch (RuntimeException e) {
 			msg.setAttempt(msg.getAttempt() + 1);
 			System.out.println("Error invoking service ->"  + "\n" + msg.toString() + "\n" + e.getMessage());

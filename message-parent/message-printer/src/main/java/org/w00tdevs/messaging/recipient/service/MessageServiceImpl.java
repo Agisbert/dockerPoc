@@ -11,6 +11,7 @@ import org.w00tdevs.messaging.domain.Message;
 @Service
 public class MessageServiceImpl implements MessageService {
 	
+	/** The signature. */
 	@Value("${message-printer.signature}")
 	private String signature;
 
@@ -33,11 +34,17 @@ public class MessageServiceImpl implements MessageService {
 	 */
 	@Override
 	public Message printDummyMessage() {
+		Message message = createDummyMessage();
+		return printMessage(message);
+	}
+
+
+	private Message createDummyMessage() {
 		Message message = new Message();
 		message.setMessage("Dummy message");
 		message.setAttempt(-1);
 		message.setSender(signature);
-		return printMessage(message);
+		return message;
 	}
 
 	

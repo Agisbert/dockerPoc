@@ -1,11 +1,15 @@
 spring:
  profiles:
-  active: local
+  active: local2
  application:
   name: message-printer
  cloud:
   config:
-   enabled: false
+   enabled: true
+   uri: http://localhost:8090
+   
+encrypt:
+  key: message-printer-key
    
 ---
 spring:

@@ -5,7 +5,6 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.support.BasicAuthorizationInterceptor;
@@ -20,7 +19,6 @@ import org.springframework.web.client.RestTemplate;
 @EnableScheduling
 @EnableCircuitBreaker
 @EnableDiscoveryClient
-@RibbonClient(name = "message-printer", configuration = MessagePrinterConfig.class)
 public class MessageSenderConfig {
 
 	/** The user. */

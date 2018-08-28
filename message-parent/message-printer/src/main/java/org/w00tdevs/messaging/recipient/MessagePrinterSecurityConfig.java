@@ -1,4 +1,5 @@
 package org.w00tdevs.messaging.recipient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,6 +18,13 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 public class MessagePrinterSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	/** The user. */
+	@Value("${message-printer.user}")
+	private String user;
+	
+	/** The pass. */
+	@Value("${message-printer.pass}")
+	private String pass;
 
 	/* (non-Javadoc)
 	 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)
@@ -36,7 +44,7 @@ public class MessagePrinterSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public UserDetailsService userDetailsService(){
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-		manager.createUser(User.withUsername("user").password("{noop}password")
+		manager.createUser(User.withUsername(user).password("{noop}" + pass)
 				.roles("USER").build());
 		return manager;
 	}

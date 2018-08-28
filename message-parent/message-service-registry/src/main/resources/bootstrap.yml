@@ -1,10 +1,12 @@
 spring:
- profiles: default
+ profiles:
+  active: local2
  application:
   name: registry-server
  cloud:
   config:
-   enabled: false
+   enabled: true
+   uri: http://localhost:8090
    
 ---
 spring:
@@ -16,3 +18,8 @@ spring:
    enabled: true
    uri: http://config-container:8090
    fail-fast: true
+   retry:
+    maxAttempts: 10
+    initialInterval: 2000
+    multiplier: 2
+    maxInterval: 48

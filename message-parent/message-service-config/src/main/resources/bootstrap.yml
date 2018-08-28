@@ -5,9 +5,12 @@ spring:
   cloud:
     config:
       server:
-        git:
+        git:         
           uri: https://github.com/Agisbert/dockerPocConfig
           skipSslValidation: true
           clone-on-startup: true
           searchPaths: message-config
-          
+        encrypt:
+          enabled: false
+        
+      

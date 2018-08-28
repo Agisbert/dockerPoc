@@ -1,5 +1,7 @@
 message-printer:
  signature: ${spring.application.name}:${random.value}
+ user: user
+ pass: password
     
 server:
  port: 0

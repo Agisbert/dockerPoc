@@ -1,15 +1,18 @@
 spring:
- profiles:
-  active: local
+ profile: local2
  application:
   name: message-sender
  cloud:
   config:
-   enabled: false
+   enabled: true
+   uri: http://localhost:8090
+
+encrypt:
+  key: message-sender-key
    
 ---
 spring:
- profiles: config-server
+ profile: config-server
  application:
   name: message-sender
  cloud:
