@@ -8,9 +8,9 @@ spring:
         locator:
           enabled: true
 eureka:
- client:
-  serviceUrl:
-   defaultZone: http://localhost:1099/eureka
-  register-with-eureka: false
-  fetchRegistry: true
-  registryFetchIntervalSeconds: 2
+  client:
+    serviceUrl: 
+      defaultZone: http://localhost:1099/eureka
+    register-with-eureka: false
+    fetch-registry: true
+    registryFetchIntervalSeconds: 2
